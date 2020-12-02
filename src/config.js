@@ -11,6 +11,6 @@ if (dotenv.error) {
 
 module.exports = {
   db_name: process.env.DB_NAME,
-  db_user: process.env.DB_USER,
-  db_password: process.env.DB_PASSWORD,
+  db_user: process.env.DB_USER_NAME,
+  db_password: process.env.DB_USER_PASSWORD,
 };
