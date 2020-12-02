@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const { PORT } = require("./utlis/constants");
+const initDB = require("./dataBase");
+
+initDB();
 
 app.listen(PORT, (err) => {
   if (err) {
