@@ -33,6 +33,10 @@ const licenseListSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  uid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-module.exports = mongoose.model("LicenseList", licenseListSchema);
+module.exports = mongoose.model("License", licenseListSchema);
