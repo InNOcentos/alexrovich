@@ -14,15 +14,17 @@ const licenseListSchema = new mongoose.Schema({
   },
   product: {
     type: String,
+    enum: ["product 1", "product 2", "product 3", "product 4"],
     required: true,
+    unique: true,
   },
   issuedDate: {
     type: Date,
-    value: moment(new Date()).format("YYYY-MM-DD"),
+    default: moment(new Date(Date.now())),
   },
   endsDate: {
     type: Date,
-    value: moment(new Date(Date.now() + 1000 * 60 * 60 * 24 * 365)).format("YYYY-MM-DD"),
+    default: moment(new Date().setFullYear(new Date().getFullYear() + 1)), //1y
   },
   contactName: {
     type: String,

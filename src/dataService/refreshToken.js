@@ -34,6 +34,30 @@ class User {
       return null;
     }
   }
+  async findByToken(refreshToken) {
+    const { refreshTokenSchema } = this._models;
+    try {
+      const storedRefreshToken = await refreshTokenSchema.findOne({
+        token: refreshToken,
+      });
+      return storedRefreshToken;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+  async drop(existToken) {
+    const { refreshTokenSchema } = this._models;
+    try {
+      const storedRefreshToken = await refreshTokenSchema.deleteOne({
+        token: existToken,
+      });
+      return storedRefreshToken;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
 }
 
 module.exports = User;

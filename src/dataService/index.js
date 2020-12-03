@@ -1,7 +1,9 @@
 const UserService = require("./user");
-const RefreshToken = require("./refreshToken");
+const RefreshTokenService = require("./refreshToken");
+const LicenseService = require("./license");
 
 module.exports = {
   UserService,
-  RefreshToken,
+  RefreshTokenService,
+  LicenseService,
 };
