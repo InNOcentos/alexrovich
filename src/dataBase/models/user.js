@@ -20,4 +20,9 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+/* userSchema.pre("delete", (next) => {
+  console.log("preeeheet");
+  this.model("RefreshToken").remove({ uid: this._id }, next);
+}); */
+
 module.exports = mongoose.model("User", userSchema);
