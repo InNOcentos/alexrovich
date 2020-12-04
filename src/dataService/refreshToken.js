@@ -1,5 +1,3 @@
-const { compareHash, createHash } = require("../utlis/functions");
-
 class User {
   constructor(models) {
     this._models = models;
