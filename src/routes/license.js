@@ -33,9 +33,7 @@ const licenseRouter = (app, licenseService) => {
     try {
       const { date } = req.query;
       const { user_id, user_role } = res.locals.user;
-
-      const licenses = licenseService.findAll({ date, user_id, user_role });
-
+      const licenses = await licenseService.findAll({ date, user_id, user_role });
       return res.status(HttpCode.OK).json(licenses);
     } catch (err) {
       console.log(err);
