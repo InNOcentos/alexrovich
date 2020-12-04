@@ -27,6 +27,10 @@ const productRouter = (app, productService) => {
 
   route.get("/", validateAccessToken, async (req, res, next) => {
     try {
+      const { user_role } = res.locals.user;
+      const products = await productService.findAll(user_role);
+      console.log(products);
+      return res.status(HttpCode.OK).json(products);
     } catch (err) {
       console.log(err);
       next(err);
