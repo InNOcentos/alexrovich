@@ -54,7 +54,7 @@ const userRouter = (app, userService, refreshTokenService) => {
   });
   route.post(`/refresh`, validateRefreshToken(refreshTokenService), async (req, res, next) => {
     try {
-      const { _id: user_id, name: user_name, role: user_role } = res.locals.user;
+      const { user_id, user_name, user_role } = res.locals.user;
       const existToken = res.locals.token;
       const { accessToken, refreshToken } = makeTokens({ user_id, user_name, user_role });
 

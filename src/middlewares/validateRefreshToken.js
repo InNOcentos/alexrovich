@@ -23,7 +23,6 @@ module.exports = (service) => async (req, res, next) => {
   if (!verifyToken) {
     return res.status(HttpCode.FORBIDDEN).end();
   }
-
   res.locals.token = refreshToken;
   res.locals.user = verifyToken;
   next();
