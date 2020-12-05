@@ -25,18 +25,14 @@ class License {
     }
   }
 
-  async findAll({ date, user_id, user_role }) {
+  async findAll({ date, user_id }) {
     const { licenseSchema } = this._models;
-    // user role
-    // new Date(new Date().setDate(new Date().getDate() - date))
     if (date & (date !== 0)) {
       try {
         const licenses = await licenseSchema.find({
-          endsDate: { $gte: endsDate - 5 },
+          endsDate: { $lte: endsDate + date },
           uid: user_id,
         });
-        console.log("licenses");
-        console.log(licenses);
         return licenses;
       } catch (err) {
         console.log(err);
@@ -44,11 +40,33 @@ class License {
       }
     } else {
       try {
-        console.log(user_id);
         const licenses = await licenseSchema.find({
           uid: user_id,
         });
-        console.log(licenses);
+        return licenses;
+      } catch (err) {
+        console.log(err);
+        return null;
+      }
+    }
+  }
+
+  async findAllAdmin({ date }) {
+    const { licenseSchema } = this._models;
+
+    if (date & (date !== 0)) {
+      try {
+        const licenses = await licenseSchema.find({
+          endsDate: { $lte: endsDate + date },
+        });
+        return licenses;
+      } catch (err) {
+        console.log(err);
+        return null;
+      }
+    } else {
+      try {
+        const licenses = await licenseSchema.find({});
         return licenses;
       } catch (err) {
         console.log(err);

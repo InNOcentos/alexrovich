@@ -32,8 +32,14 @@ const licenseRouter = (app, licenseService) => {
   route.get("/", validateAccessToken, async (req, res, next) => {
     try {
       const { date } = req.query;
-      const { user_id, user_role } = res.locals.user;
-      const licenses = await licenseService.findAll({ date, user_id, user_role });
+      const { user_id, user_role, user_name } = res.locals.user;
+
+      if (user_name === "admin" && user_role === "admin") {
+        const licenses = await licenseService.findAllAdmin({ date });
+        return res.status(HttpCode.OK).json(licenses);
+      }
+
+      const licenses = await licenseService.findAll({ date, user_id });
       return res.status(HttpCode.OK).json(licenses);
     } catch (err) {
       console.log(err);

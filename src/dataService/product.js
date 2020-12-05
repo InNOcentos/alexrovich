@@ -18,11 +18,11 @@ class License {
     }
   }
 
-  async findAll(user_role) {
+  async findAll() {
     const { productSchema } = this._models;
 
     try {
-      const products = await productSchema.find({ user_role });
+      const products = await productSchema.find({});
       return products;
     } catch (err) {
       console.log(err);
