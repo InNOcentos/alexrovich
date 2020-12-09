@@ -1,6 +1,6 @@
 const { compareHash, createHash } = require("../utlis/functions");
 
-class User {
+class RefreshToken {
   constructor(models) {
     this._models = models;
   }
@@ -49,4 +49,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = RefreshToken;
